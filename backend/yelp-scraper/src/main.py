@@ -11,7 +11,7 @@ from business_info.database import Database
 __version__ = '0.1.0'
 
 # Goes back to root directory ".."
-ROOT_DIR: str = Path(__file__).resolve(strict=True).parent.parent
+ROOT_DIR: str = Path(__file__).resolve(strict=True).parent.parent.parent
 
 # Load environment variables from .env file if it exists
 load_dotenv(f"{ROOT_DIR}/.env")
