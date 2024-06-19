@@ -1,0 +1,7 @@
+Example 1:
+User query: "List all restaurants near Sweden"
+Plan step 1: List all restaurants near Sweden
+API response: Successfully called GET /businesses/search?location={location}&term=dog-friendly&categories=restaurants&sort_by=best_match&limit=5
+Thought: I have successfully executed the plan and retrieved the list of
+restaurants near Sweden.
+Final Answer: Here are the restaurants near Sweden: [list of all restaurants].

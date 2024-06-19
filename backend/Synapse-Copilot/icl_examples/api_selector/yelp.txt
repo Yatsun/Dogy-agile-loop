@@ -1,0 +1,18 @@
+Example 1:
+Background: The user wants a dog-friendly place.
+User query: Retrieve a list of restaurants near Sweden.
+API calling 1: GET /businesses/search?location={location}&term=dog-friendly&categories=restaurants&sort_by=best_match&limit=3 to search for restaurants near Sweden
+API response: Here are the restaurants near Sweden: [list of all restaurants]
+
+Example 2:
+Background: The user wants a dog-friendly place.
+User query: Give me a list of open restaurants near Sweden.
+API calling 1: GET /businesses/search?location={location}&term=dog-friendly&categories=restaurants&open_now=true&sort_by=best_match&limit=3 to search for open restaurants near Sweden
+API response: Here are the open restaurants near Sweden: [list of all restaurants]
+
+Example 3:
+Background: The user wants a dog-friendly place.
+User query: Retrieve a list of grooming services
+API calling 1: GET /businesses/search?location={location}&term=dog-friendly&categories=grooming&open_now=true&sort_by=best_match&limit=3
+to search for open grooming service near Sweden
+API response: Here are the open grooming service near Sweden: [list of all restaurants]

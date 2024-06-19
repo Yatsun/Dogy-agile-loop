@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "a41797e0-dd0b-40d9-823a-a62fa4f629d2",
+		"name": "Dogy AI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36321884"
+	},
+	"item": [
+		{
+			"name": "REST Search query",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "rwHSdpj1OjgrEdU0RzTz9TtqxvTIKPftt3um76DnRiTCiwJocHVoc3p7jslTbGTlxxXrDzdZ_AXV9MhUrSUWIpshwv8bvkjpR7tNpCV44pBAaQhAkiywP0NC_CxrZnYx",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://api.yelp.com/v3/businesses/search?location=Sweden&term=dog-friendly&categories=restaurants&open_now=true&sort_by=best_match&limit=1",
+					"protocol": "https",
+					"host": [
+						"api",
+						"yelp",
+						"com"
+					],
+					"path": [
+						"v3",
+						"businesses",
+						"search"
+					],
+					"query": [
+						{
+							"key": "location",
+							"value": "Sweden"
+						},
+						{
+							"key": "term",
+							"value": "dog-friendly"
+						},
+						{
+							"key": "categories",
+							"value": "restaurants"
+						},
+						{
+							"key": "open_now",
+							"value": "true"
+						},
+						{
+							"key": "sort_by",
+							"value": "best_match"
+						},
+						{
+							"key": "limit",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

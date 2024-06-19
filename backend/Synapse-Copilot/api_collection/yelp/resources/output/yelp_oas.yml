@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  title: Dogy AI
+  version: 1.0.0
+servers:
+  - url: https://api.yelp.com
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+paths:
+  /v3/businesses/search:
+    get:
+      tags:
+        - default
+      summary: REST Search query
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: location
+          in: query
+          schema:
+            type: string
+          example: Sweden
+        - name: term
+          in: query
+          schema:
+            type: string
+          example: dog-friendly
+        - name: categories
+          in: query
+          schema:
+            type: string
+          example: restaurants
+        - name: open_now
+          in: query
+          schema:
+            type: boolean
+          example: 'true'
+        - name: sort_by
+          in: query
+          schema:
+            type: string
+          example: best_match
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
