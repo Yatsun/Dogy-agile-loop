@@ -4,5 +4,8 @@ pip install elevenlabs==0.3.0b0
 brew install mpv
 pip install --upgrade openai
 
-Generate Assembly AI API key = https://www.assemblyai.com/discover/?utm_source=youtube&utm_medium=referral&utm_campaign=yt_smit_17
-NEED OpenAI key and elevenLabs API key
+TODO
+- Generate Assembly AI API key = https://www.assemblyai.com/discover/?utm_source=youtube&utm_medium=referral&utm_campaign=yt_smit_17
+- NEED OpenAI key and elevenLabs API key
+- Update NEED TO UPDATE in chatbot.py
+
