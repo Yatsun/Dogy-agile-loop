@@ -26,19 +26,7 @@ def main():
     scenario = scenario.lower()
     api_spec, headers = None, None
 
-    # database connection details
-    # db_config = {
-    #     'host': 'localhost',
-    #     'database': 'synapse-copilot',
-    #     'user': 'root',
-    #     'password': 'MundAneCandacE!03@16#1953',
-    # }
-
-    # # Connect to the MySQL server
-    # conn = mysql.connector.connect(**db_config)
-    # cursor = conn.cursor()
-
-    user_id = int(input("Enter the user id: "))
+    # user_id = int(input("Enter the user id: "))
 
     if scenario == "yelp":
         api_spec, headers = process_spec_file(
