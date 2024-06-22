@@ -4,8 +4,7 @@ import json
 import logging
 from logging.handlers import BaseRotatingHandler
 from colorama import Fore
-
-from langchain.agents.agent_toolkits.openapi.spec import ReducedOpenAPISpec
+from langchain_community.agent_toolkits.openapi.spec import ReducedOpenAPISpec
 
 
 class ColorPrint:

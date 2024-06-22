@@ -3,11 +3,7 @@ import re
 import logging
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
-
-from langchain.callbacks.base import BaseCallbackManager
 from langchain.chains.base import Chain
-from langchain.callbacks.manager import CallbackManagerForChainRun
-from langchain.llms.base import BaseLLM
 
 from langchain.requests import RequestsWrapper
 
@@ -15,6 +11,8 @@ from .planner import Planner
 from .api_selector import APISelector
 from .caller import Caller
 from utils import ReducedOpenAPISpec
+from langchain_core.callbacks import BaseCallbackManager, CallbackManagerForChainRun
+from langchain_core.language_models import BaseLLM, BaseChatModel
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +20,7 @@ logger = logging.getLogger(__name__)
 class ApiLLM(Chain):
     """Consists of an agent using tools."""
 
-    llm: BaseLLM
+    llm: BaseLLM | BaseChatModel
     api_spec: ReducedOpenAPISpec
     planner: Planner
     api_selector: APISelector
@@ -36,7 +34,7 @@ class ApiLLM(Chain):
 
     def __init__(
             self,
-            llm: BaseLLM,
+            llm: BaseLLM | BaseChatModel,
             api_spec: ReducedOpenAPISpec,
             scenario: str,
             requests_wrapper: RequestsWrapper,

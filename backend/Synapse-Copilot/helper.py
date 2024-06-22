@@ -5,7 +5,6 @@ import datetime
 import time
 import yaml
 from base64 import b64encode
-from langchain.requests import Requests
 from langchain import OpenAI
 
 from utils import reduce_openapi_spec, ColorPrint
@@ -14,6 +13,7 @@ from model import ApiLLM
 from model.api_selector import icl_examples as api_selector_icl
 from model.planner import icl_examples as planner_icl
 from requests.auth import HTTPBasicAuth
+from langchain_community.utilities import Requests
 
 
 def process_spec_file(file_path: str = None, token: str = None, key: str = None, username: str = None):

@@ -1,6 +1,8 @@
+from langchain_mistralai.chat_models import ChatMistralAI
+from langchain_core.language_models import BaseLLM, BaseChatModel
+from langchain_community.llms.openai import OpenAI
 from dotenv import load_dotenv
 from pathlib import Path
-import mysql.connector
 import random
 import os
 
@@ -26,8 +28,6 @@ def main():
     scenario = scenario.lower()
     api_spec, headers = None, None
 
-    # user_id = int(input("Enter the user id: "))
-
     if scenario == "yelp":
         api_spec, headers = process_spec_file(
             file_path="specs/yelp_oas.json", token=os.environ["YELP_KEY"]
@@ -41,10 +41,16 @@ def main():
     populate_planner_icl_examples(scenario=scenario)
 
     requests_wrapper = Requests(headers=headers)
-
     # text-davinci-003
 
-    llm = OpenAI(model_name="gpt-4", temperature=0.0, max_tokens=1024)
+    # llm = OpenAI(model_name="gpt-4", temperature=0.0, max_tokens=1024)
+    llm = ChatMistralAI(
+        endpoint=os.environ["AZURE_MISTRAL_URL"],
+        mistral_api_key=os.environ["AZURE_MISTRAL_KEY"],
+        temperature=0.0,
+        max_tokens=1024
+    )
+
     api_llm = ApiLLM(
         llm,
         api_spec=api_spec,

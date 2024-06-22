@@ -12,11 +12,12 @@ import tiktoken
 from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
 from langchain.requests import RequestsWrapper
-from langchain.prompts.prompt import PromptTemplate
-from langchain.llms.base import BaseLLM
 
 from utils import simplify_json, get_matched_endpoint, ReducedOpenAPISpec, fix_json_error
 from .parser import ResponseParser
+from langchain_core.language_models import BaseLLM, BaseChatModel
+from langchain_core.prompts import PromptTemplate
+
 # from .parser import SimpleResponseParser
 
 
@@ -118,7 +119,7 @@ Thought: {agent_scratchpad}
 
 
 class Caller(Chain):
-    llm: BaseLLM
+    llm: BaseLLM | BaseChatModel
     api_spec: ReducedOpenAPISpec
     scenario: str
     requests_wrapper: RequestsWrapper
@@ -129,7 +130,7 @@ class Caller(Chain):
     with_response: bool = False
     output_key: str = "result"
 
-    def __init__(self, llm: BaseLLM, api_spec: ReducedOpenAPISpec, scenario: str, requests_wrapper: RequestsWrapper, simple_parser: bool = False, with_response: bool = False) -> None:
+    def __init__(self, llm: BaseLLM | BaseChatModel, api_spec: ReducedOpenAPISpec, scenario: str, requests_wrapper: RequestsWrapper, simple_parser: bool = False, with_response: bool = False) -> None:
         super().__init__(llm=llm, api_spec=api_spec, scenario=scenario, requests_wrapper=requests_wrapper, simple_parser=simple_parser, with_response=with_response)
 
     @property
