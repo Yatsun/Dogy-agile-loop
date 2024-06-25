@@ -3,7 +3,10 @@
  * @see https://v0.dev/t/yzCLtgp3nYX
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
+import { Input } from "@/ui/input"
+import { Button } from "@/ui/button"
 import Link from "next/link"
+
 
 export default function Component() {
   return (
@@ -35,6 +38,13 @@ export default function Component() {
             prefetch={false}
           >
             Bookings
+          </Link>
+          <Link
+            href="voice"
+            className="inline-flex h-9 items-center justify-center rounded-md bg-lime-200 px-4 py-2 text-sm font-medium text-black shadow transition-colors hover:bg-lime-400/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+            prefetch={false}
+          >
+            ChatBot
           </Link>
         </div>
       </header>
@@ -73,6 +83,20 @@ export default function Component() {
                   Find Dog-Friendly Restaurants
                 </Link>
               </div>
+              <h2 className="text-4xl font-light">
+          How can I assist you with your voice request today?
+        </h2>
+        <div className="flex items-center w-full max-w-2xl space-x-4">
+          <Input
+            type="text"
+            placeholder="What can I help you with?"
+            className="flex-grow p-4 text-lg rounded-full shadow-md"
+          />
+          <Button className="flex items-center space-x-2 bg-[#bd1e59] text-black rounded-full px-6 py-3 bg-lime-200 hover:bg-lime-400/90">
+            <MicIcon className="h-5 w-5" />
+            <span>Start Voice Chat</span>
+          </Button>
+        </div>
             </div>
           </div>
         </section>
@@ -99,6 +123,55 @@ function PawPrintIcon(props) {
       <circle cx="18" cy="8" r="2" />
       <circle cx="20" cy="16" r="2" />
       <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z" />
+    </svg>
+  )
+}
+
+function MicIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+      <line x1="12" x2="12" y1="19" y2="22" />
+    </svg>
+  )
+}
+
+
+function SunIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2" />
+      <path d="M12 20v2" />
+      <path d="m4.93 4.93 1.41 1.41" />
+      <path d="m17.66 17.66 1.41 1.41" />
+      <path d="M2 12h2" />
+      <path d="M20 12h2" />
+      <path d="m6.34 17.66-1.41 1.41" />
+      <path d="m19.07 4.93-1.41 1.41" />
     </svg>
   )
 }

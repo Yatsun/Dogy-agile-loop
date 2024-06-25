@@ -7,7 +7,7 @@ import { Input } from "@/ui/input"
 import { Button } from "@/ui/button"
 import Link from "next/link"
 
-export default function Component() {
+export function Restuarants() {
   return (
     <div className="flex flex-col gap-6 p-4 md:p-6 bg-orange-100">
       <div className="flex items-center gap-4">
