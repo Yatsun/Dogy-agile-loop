@@ -24,7 +24,7 @@ class ApiLLM(Chain):
     api_spec: ReducedOpenAPISpec
     planner: Planner
     api_selector: APISelector
-    scenario: str = "tmdb"
+    scenario: str = "yelp"
     requests_wrapper: RequestsWrapper
     simple_parser: bool = False
     return_intermediate_steps: bool = False
