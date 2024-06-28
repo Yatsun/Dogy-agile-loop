@@ -13,7 +13,7 @@ from model.scenario_selector import ScenarioSelector
 logger = logging.getLogger()
 ROOT_DIR: str = Path(__file__).resolve(strict=True).parent
 
-def main():
+def main(message: str):
     load_dotenv(f"{ROOT_DIR}/.env")
 
     logging.basicConfig(
@@ -33,7 +33,7 @@ def main():
     #     stream=True
     # )
 
-    query = input("Query: ")
+    query = message
 
     logger.info(f"Query: {query}")
 

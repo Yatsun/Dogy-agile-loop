@@ -246,7 +246,11 @@ class Caller(Chain):
             response_text = response
         else:
             raise NotImplementedError
-        
+
+        json_parsed = json.loads(response_text)
+        with open("output.json", "w") as file:
+            json.dump(json_parsed, file, ensure_ascii=False, indent=4)
+
         return response_text, params, request_body, desc, query
     
     def _call(self, inputs: Dict[str, str]) -> Dict[str, str]:
