@@ -33,9 +33,7 @@ def main():
     #     stream=True
     # )
 
-    query = input(
-        "Please input an instruction (Press ENTER to use the example instruction): "
-    )
+    query = input("Query: ")
 
     logger.info(f"Query: {query}")
 
