@@ -3,6 +3,7 @@
  * @see https://v0.dev/t/yzCLtgp3nYX
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
+import { inferenceCopilot } from "@/api/synapse-copilot/route"
 import { Input } from "@/ui/input"
 import { Button } from "@/ui/button"
 import Link from "next/link"
@@ -87,7 +88,7 @@ export default function Component() {
           How can I assist you with your voice request today?
         </h2>
         <div className="flex items-center w-full max-w-2xl space-x-4">
-          <Input
+          <Input onKeyDown={handleKeyDown}
             type="text"
             placeholder="What can I help you with?"
             className="flex-grow p-4 text-lg rounded-full shadow-md"
@@ -105,6 +106,14 @@ export default function Component() {
   )
 }
 
+async function handleKeyDown(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    const inputValue = event.target.value;
+    const data = await inferenceCopilot(inputValue);
+    console.log(data);
+  }
+}
 function PawPrintIcon(props) {
   return (
     <svg
