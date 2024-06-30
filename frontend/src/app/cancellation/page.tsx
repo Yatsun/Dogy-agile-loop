@@ -1,9 +1,4 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/FvDKYAvDroj
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-import { Button } from "@/ui/button"
+import { Button } from "@/ui/button";
 
 export default function Component() {
   return (
@@ -19,7 +14,9 @@ export default function Component() {
           <div>
             <div className="mb-4">
               <h2 className="text-lg font-semibold">Reservation Details</h2>
-              <p className="text-muted-foreground">Check-in: 2023-06-25 | Check-out: 2023-06-28</p>
+              <p className="text-muted-foreground">
+                Check-in: 2023-06-25 | Check-out: 2023-06-28
+              </p>
             </div>
             <div className="mb-4">
               <h2 className="text-lg font-semibold">Guests</h2>
@@ -33,12 +30,13 @@ export default function Component() {
           <div className="bg-muted p-6 rounded-lg">
             <h2 className="text-lg font-semibold mb-4">Cancellation Policy</h2>
             <p className="text-muted-foreground">
-              You can cancel your booking up to 48 hours before check-in for a full refund. Cancellations within 48
-              hours of check-in will not be eligible for a refund.
+              You can cancel your booking up to 48 hours before check-in for a
+              full refund. Cancellations within 48 hours of check-in will not be
+              eligible for a refund.
             </p>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
