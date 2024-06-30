@@ -7,7 +7,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -21,6 +21,26 @@
       "@/*": ["./src/app/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/Homepage/page.jsx", "src/app/Restaurants/layout.jsx", "src/app/Restaurants/page.jsx", "src/app/Parks/page.jsx", "src/app/Vetininary/page.jsx", "src/app/voice/page.jsx", "src/app/voice/index.tsx", "src/app/voice/_app.jsx", "src/app/voice/_document.jsx", "src/app/voice/_app.tsx", "src/app/voice/_document.tsx","src/app/voice/api/chatgpt.ts","src/app/voice/api/hello.ts","src/app/voice/API/whisper.ts", "src/app/loading/loading.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/Homepage/page.jsx",
+    "src/app/Restaurants/layout.jsx",
+    "src/app/Restaurants/page.jsx",
+    "src/app/Parks/page.jsx",
+    "src/app/Vetininary/page.jsx",
+    "src/app/voice/page.jsx",
+    "src/app/voice/index.tsx",
+    "src/app/voice/_app.jsx",
+    "src/app/voice/_document.jsx",
+    "src/app/voice/_app.tsx",
+    "src/app/voice/_document.tsx",
+    "src/app/voice/api/chatgpt.ts",
+    "src/app/voice/api/hello.ts",
+    "src/app/voice/API/whisper.ts",
+    "src/app/loading/loading.jsx"
+  ],
   "exclude": ["node_modules"]
 }

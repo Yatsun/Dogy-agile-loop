@@ -1,6 +1,6 @@
 import { Button } from "@/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/ui/avatar";
-import { Restuarants } from "../Restaurants/page";
+import { Restuarants } from "@/../components/Restaurants";
 
 export default function Component() {
   return (

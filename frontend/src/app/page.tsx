@@ -1,12 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { inferenceCopilot } from "@/api/synapse-copilot/route";
+import { inferenceCopilot } from "@/actions/actions";
 import { Input } from "@/ui/input";
 import { Button } from "@/ui/button";
 import Link from "next/link";
+import { useFormState } from "react-dom";
+import { useRouter } from "next/navigation";
+import { useMessageData } from "@/../state/message-data";
 
 export default function Home() {
+  const [state, action, isPending] = useFormState(inferenceCopilot, null);
+  const router = useRouter();
+  const { setMessageData, messageData } = useMessageData();
+
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <header className="flex items-center h-16 px-4 border-b shrink-0 bg-orange-100">
@@ -65,21 +72,21 @@ export default function Home() {
               </div>
               <div className="flex flex-col sm:flex-row gap-2">
                 <Link
-                  href="Parks"
+                  href="/parks"
                   className="inline-flex h-12 items-center justify-center rounded-md bg-lime-200 px-8 text-sm font-medium text-gray-900 shadow transition-colors hover:bg-lime-400/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
                   prefetch={false}
                 >
                   Find Dog Parks
                 </Link>
                 <Link
-                  href="Vetininary"
+                  href="/veterinary"
                   className="inline-flex h-12 items-center justify-center rounded-md bg-lime-200 px-8 text-sm font-medium text-gray-900 shadow transition-colors hover:bg-lime-400/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
                   prefetch={false}
                 >
                   Find Veterinarians
                 </Link>
                 <Link
-                  href="Restaurants"
+                  href="/restaurants"
                   className="inline-flex h-12 items-center justify-center rounded-md bg-lime-200 px-8 text-sm font-medium text-gray-900 shadow transition-colors hover:bg-lime-400/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
                   prefetch={false}
                 >
@@ -91,7 +98,16 @@ export default function Home() {
               </h2>
               <div className="flex items-center w-full max-w-2xl space-x-4">
                 <Input
-                  onKeyDown={handleKeyDown}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      console.log(messageData);
+                      router.push("/chats/1");
+                      action(e.target.value);
+                      setMessageData(state);
+                      console.log(messageData);
+                    }
+                  }}
                   type="text"
                   placeholder="What can I help you with?"
                   className="flex-grow p-4 text-lg rounded-full shadow-md"
@@ -109,15 +125,7 @@ export default function Home() {
   );
 }
 
-async function handleKeyDown(event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    const inputValue = event.target.value;
-    const data = await inferenceCopilot(inputValue);
-    console.log(data);
-  }
-}
-function PawPrintIcon(props) {
+function PawPrintIcon(props: any) {
   return (
     <svg
       {...props}
@@ -139,7 +147,7 @@ function PawPrintIcon(props) {
   );
 }
 
-function MicIcon(props) {
+function MicIcon(props: any) {
   return (
     <svg
       {...props}
@@ -156,33 +164,6 @@ function MicIcon(props) {
       <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
       <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
       <line x1="12" x2="12" y1="19" y2="22" />
-    </svg>
-  );
-}
-
-function SunIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 2v2" />
-      <path d="M12 20v2" />
-      <path d="m4.93 4.93 1.41 1.41" />
-      <path d="m17.66 17.66 1.41 1.41" />
-      <path d="M2 12h2" />
-      <path d="M20 12h2" />
-      <path d="m6.34 17.66-1.41 1.41" />
-      <path d="m19.07 4.93-1.41 1.41" />
     </svg>
   );
 }
