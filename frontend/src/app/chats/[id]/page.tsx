@@ -1,15 +1,43 @@
+"use client";
+
 import { Button } from "@/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/ui/avatar";
-import { Restuarants } from "@/../components/Restaurants";
+import { Restaurants } from "@/../components/Restaurants";
+import { useEffect, useState } from "react";
+import { useMessageData } from "@/../state/message-data";
+import { inferenceCopilot } from "@/actions/actions";
+import { Loading } from "@/loading/loading";
 
 export default function Component() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const { input } = useMessageData();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const data = await inferenceCopilot(input);
+        console.log(`Inside useEffect: ${data}`);
+        setData(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log(`Outside useEffect: ${data}`);
+
   return (
     <div className="flex flex-row min-h-screen">
       <div>
         <header className="bg-primary text-primary-foreground px-4 py-3 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-2">
             <BotIcon className="w-6 h-6" />
-            <span className="text-lg font-semibold">caLUDE AI</span>
+            <span className="text-lg font-semibold">Dogy AI</span>
           </div>
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon" className="hover:bg-primary/20">
@@ -22,7 +50,7 @@ export default function Component() {
             </Button>
           </div>
         </header>
-        <main className="flex-1 bg-background text-foreground p-4 md:p-6 overflow-auto">
+        <main className="flex-1 bg-background h-[80svh] text-foreground p-4 md:p-6 overflow-auto">
           <div className="max-w-3xl mx-auto space-y-4">
             <div className="flex items-start gap-4">
               <Avatar className="w-8 h-8 shrink-0">
@@ -30,7 +58,7 @@ export default function Component() {
                 <AvatarFallback>U</AvatarFallback>
               </Avatar>
               <div className="bg-muted rounded-lg p-3 max-w-[75%]">
-                <p>Hello, how can I assist you today?</p>
+                <p>{input}</p>
               </div>
             </div>
             <div className="flex items-start gap-4 flex-row-reverse">
@@ -40,39 +68,8 @@ export default function Component() {
               </Avatar>
               <div className="bg-primary text-primary-foreground rounded-lg p-3 max-w-[75%]">
                 <p>
-                  Hi there! I'm an AI assistant created by caLUDE. How can I
-                  help you today?
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Avatar className="w-8 h-8 shrink-0">
-                <AvatarImage src="/placeholder-user.jpg" />
-                <AvatarFallback>U</AvatarFallback>
-              </Avatar>
-              <div className="bg-muted rounded-lg p-3 max-w-[75%]">
-                <p>
-                  I'm looking for some information on the latest advancements in
-                  AI technology. Can you tell me more about that?
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4 flex-row-reverse">
-              <Avatar className="w-8 h-8 shrink-0">
-                <AvatarImage src="/placeholder-user.jpg" />
-                <AvatarFallback>A</AvatarFallback>
-              </Avatar>
-              <div className="bg-primary text-primary-foreground rounded-lg p-3 max-w-[75%]">
-                <p>
-                  Absolutely! AI technology has been advancing rapidly in recent
-                  years. Some of the key advancements include improvements in
-                  natural language processing, computer vision, and machine
-                  learning algorithms. This has enabled AI systems to better
-                  understand and interact with humans, as well as tackle
-                  increasingly complex tasks. Many industries are starting to
-                  adopt AI to automate processes, improve decision-making, and
-                  drive innovation. Let me know if you'd like me to go into more
-                  detail on any specific areas of AI advancements.
+                  Hi there! I'm an AI assistant created by Dogy. How can I help
+                  you today?
                 </p>
               </div>
             </div>
@@ -101,8 +98,16 @@ export default function Component() {
           </div>
         </footer>
       </div>
-      <div>
-        <Restuarants />
+      <div className="flex flex-row">
+        {loading ? (
+          <>
+            <Loading />
+            <Loading />
+            <Loading />
+          </>
+        ) : (
+          <Restaurants data={data} />
+        )}
       </div>
     </div>
   );

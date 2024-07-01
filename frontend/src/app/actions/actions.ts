@@ -1,8 +1,6 @@
 "use server";
 
-import { redirect } from "next/navigation";
-
-export async function inferenceCopilot(previousState, input: string) {
+export async function inferenceCopilot(input: string) {
   const URL = "https://dogy-synapse-copilot.azurewebsites.net/chat/completions";
 
   try {

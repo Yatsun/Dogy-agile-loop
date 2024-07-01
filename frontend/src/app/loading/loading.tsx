@@ -1,7 +1,13 @@
-export function loading() {
+import { Skeleton } from "@/../components/ui/skeleton";
+
+export function Loading() {
   return (
-    <div className="flex items-center justify-center h-screen bg-primary">
-      <div className="animate-spin rounded-full border-4 border-primary-foreground border-t-transparent h-12 w-12" />
+    <div className="ml-10 mt-16 flex flex-col space-y-3">
+      <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-[250px]" />
+        <Skeleton className="h-4 w-[200px]" />
+      </div>
     </div>
   );
 }

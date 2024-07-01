@@ -1,18 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { inferenceCopilot } from "@/actions/actions";
 import { Input } from "@/ui/input";
 import { Button } from "@/ui/button";
 import Link from "next/link";
-import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import { useMessageData } from "@/../state/message-data";
+// import { useRestaurantContext } from "@/../context/restaurant-context";
 
 export default function Home() {
-  const [state, action, isPending] = useFormState(inferenceCopilot, null);
   const router = useRouter();
-  const { setMessageData, messageData } = useMessageData();
+  const { setInput } = useMessageData();
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
@@ -101,11 +99,8 @@ export default function Home() {
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
                       e.preventDefault();
-                      console.log(messageData);
+                      setInput(e.currentTarget.value);
                       router.push("/chats/1");
-                      action(e.target.value);
-                      setMessageData(state);
-                      console.log(messageData);
                     }
                   }}
                   type="text"

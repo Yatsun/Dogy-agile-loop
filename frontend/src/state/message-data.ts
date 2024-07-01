@@ -1,11 +1,15 @@
 import { create } from "zustand";
 
 interface MessageDataState {
-  messageData: Object;
-  setMessageData: (messageData: string) => void;
+  messageData: object;
+  setMessageData: (messageData: object) => void;
+  input: string;
+  setInput: (userInput: string) => void;
 }
 
 export const useMessageData = create<MessageDataState>((set: any) => ({
   messageData: {},
-  setMessageData: (messageData: Object) => set({ messageData }),
+  setMessageData: (messageData: object) => set(messageData),
+  input: "",
+  setInput: (userInput: string) => set(userInput),
 }));
